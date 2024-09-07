@@ -25,11 +25,4 @@ class UserEloquentRepository extends BaseRepository
             ->where('email', $email)
             ->firstOrFail();
     }
-
-    public function getSessions(int $user_id, int $per_page = 10)
-    {
-        return $this->session()->newQuery()
-            ->where('user_id', $user_id)
-            ->paginate($per_page);
-    }
 }

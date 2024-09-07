@@ -23,7 +23,10 @@ class AuthController
     {
         return UserWithTokenResource::make(
             $this->service->login(
-                LoginData::from($request->toArray())
+                LoginData::from(
+                    $request->toArray(),
+                    ['session_id' => $request->session()->getId()]
+                )
             )
         );
     }
@@ -48,5 +51,12 @@ class AuthController
                 request()->input('per_page') ?? 10
             )
         );
+    }
+
+    public function closeSession(string $session_id): Response
+    {
+        $this->service->closeSession(Auth::id(), $session_id);
+
+        return response(status: 204);
     }
 }

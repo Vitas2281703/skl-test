@@ -2,23 +2,24 @@
 
 namespace App\Repositories;
 
+use App\Models\Session;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 class SessionEloquentRepository extends BaseRepository
 {
     public function model(): string
     {
-        return Sess::class;
+        return Session::class;
     }
 
-    public function getByEmail(string $email): User
+    public function getSessions(int $user_id, int $per_page = 10): LengthAwarePaginator
     {
-        /** @var User */
         return $this->model->newQuery()
-            ->where('email', $email)
-            ->firstOrFail();
+            ->where('user_id', $user_id)
+            ->paginate($per_page);
     }
 }
