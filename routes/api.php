@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Passport\Http\Controllers\AccessTokenController;
 use Laravel\Passport\Http\Controllers\AuthorizedAccessTokenController;
@@ -46,4 +48,15 @@ Route::middleware('auth:api')->group(function () {
             Route::delete('/{session_id}', [AuthController::class, 'closeSession'])->name('delete');
         });
     });
+
+    Route::group(['prefix' => '/order', 'as' => 'order.'], function () {
+        Route::post('/', [OrderController::class, 'create'])->name('create');
+        Route::group(['prefix' => '/{order_id}'], function () {
+            Route::patch('/sync-workers', [OrderController::class, 'syncWorkers'])->name('sync-workers');
+            Route::patch('/status', [OrderController::class, 'changeStatus'])->name('change-status');
+        });
+    });
+
+    Route::get('/workers', [WorkerController::class, 'list'])->name('worker.list');
+
 });
