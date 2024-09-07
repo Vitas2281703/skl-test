@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\OrderStatus;
 use App\Models\OrderType;
-use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Database\Seeder;
 

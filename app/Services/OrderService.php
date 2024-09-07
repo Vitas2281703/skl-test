@@ -3,27 +3,16 @@
 namespace App\Services;
 
 use App\Domains\DTO\Order\OrderData;
-use App\Domains\DTO\User\LoginData;
-use App\Domains\DTO\User\UserWithTokenData;
 use App\Exceptions\Order\IncorrectWorkersException;
-use App\Exceptions\User\CannotDeleteSomeoneSessionException;
-use App\Exceptions\User\IncorrectPasswordException;
 use App\Models\Order;
-use App\Models\Session;
 use App\Repositories\OrderEloquentRepository;
-use App\Repositories\SessionEloquentRepository;
-use App\Repositories\UserEloquentRepository;
 use App\Repositories\WorkerEloquentRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 readonly class OrderService
 {
     public function __construct(
-        protected readonly OrderEloquentRepository $repository,
-        protected readonly WorkerEloquentRepository $workerRepository
+        protected OrderEloquentRepository $repository,
+        protected WorkerEloquentRepository $workerRepository
     ) {}
 
     public function create(OrderData $data): Order
@@ -34,6 +23,9 @@ readonly class OrderService
         );
     }
 
+    /**
+     * @param  int[]  $worker_ids
+     */
     public function syncWorkers(int $order_id, array $worker_ids = []): Order
     {
         return $this->save(
@@ -53,11 +45,14 @@ readonly class OrderService
         );
     }
 
+    /**
+     * @param  int[]|null  $worker_ids
+     */
     public function save(Order $order, ?array $worker_ids = null): Order
     {
-        if (!empty($worker_ids)) {
+        if (! empty($worker_ids)) {
             if ($this->workerRepository->checkExOrderTypes($worker_ids, $order->type_id)) {
-                throw new IncorrectWorkersException();
+                throw new IncorrectWorkersException;
             }
         }
 
@@ -66,5 +61,4 @@ readonly class OrderService
             $worker_ids
         );
     }
-
 }

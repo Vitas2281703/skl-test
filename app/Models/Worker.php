@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
- * @mixin IdeHelperSession
+ * @mixin IdeHelperWorker
  */
 class Worker extends Model
 {

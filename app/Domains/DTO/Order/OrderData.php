@@ -7,14 +7,7 @@ use Spatie\LaravelData\Data;
 class OrderData extends Data
 {
     /**
-     * @param int $type_id
-     * @param int $partnership_id
-     * @param int $user_id
-     * @param string $description
-     * @param string $address
-     * @param int $status_id
-     * @param int[] $worker_ids
-     * @param int $amount
+     * @param  int[]  $worker_ids
      */
     public function __construct(
         public readonly int $type_id,

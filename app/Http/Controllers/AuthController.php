@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Domains\DTO\User\LoginData;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\User\SessionResource;
 use App\Http\Resources\User\UserResource;
 use App\Http\Resources\User\UserWithTokenResource;

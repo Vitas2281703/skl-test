@@ -34,7 +34,7 @@ class CreateRequest extends FormRequest
             'amount' => 'required|int|min:1',
             'status_id' => 'required|int|exists:'.OrderStatus::class.',id',
             'worker_ids' => 'array',
-            'worker_ids.*' => 'required|int|exists:'.Worker::class.',id'
+            'worker_ids.*' => 'required|int|exists:'.Worker::class.',id',
         ];
     }
 }

@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Worker;
 
-use App\Models\OrderStatus;
-use App\Models\OrderType;
-use App\Models\Partnership;
+use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin Partnership|OrderType|OrderStatus
+ * @mixin Worker
  */
-class SelectResource extends JsonResource
+class WorkerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -23,6 +21,9 @@ class SelectResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'second_name' => $this->second_name,
+            'surname' => $this->surname,
+            'phone' => $this->phone,
         ];
     }
 }

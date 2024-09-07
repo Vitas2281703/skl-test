@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             OrderTypeSeeder::class,
             PartnershipSeeder::class,
             WorkerSeeder::class,
-            OrderSeeder::class
+            OrderSeeder::class,
         ]);
     }
 }

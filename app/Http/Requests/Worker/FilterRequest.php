@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Order;
+namespace App\Http\Requests\Worker;
 
-use App\Models\OrderStatus;
+use App\Models\OrderType;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChangeStatusRequest extends FormRequest
+class FilterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,10 @@ class ChangeStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status_id' => 'required|int|exists:'.OrderStatus::class.',id',
+            'type_ids' => 'array',
+            'type_ids.*' => 'required|int|exists:'.OrderType::class.',id',
+            'page' => 'int|min:1',
+            'per_page' => 'int|min:1',
         ];
     }
 }

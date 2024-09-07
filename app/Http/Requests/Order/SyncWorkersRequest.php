@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Order;
 
-use App\Models\OrderType;
 use App\Models\Worker;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +24,7 @@ class SyncWorkersRequest extends FormRequest
     {
         return [
             'worker_ids' => 'required|array',
-            'worker_ids.*' => 'int|exists:'.Worker::class.',id'
+            'worker_ids.*' => 'int|exists:'.Worker::class.',id',
         ];
     }
 }

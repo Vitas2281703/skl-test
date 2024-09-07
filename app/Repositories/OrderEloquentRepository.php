@@ -3,8 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Order;
-use App\Models\Session;
-use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -15,6 +13,9 @@ class OrderEloquentRepository extends BaseRepository
         return Order::class;
     }
 
+    /**
+     * @param  int[]|null  $worker_ids
+     */
     public function save(Order $order, ?array $worker_ids = null): Order
     {
         return DB::transaction(function () use ($order, $worker_ids) {

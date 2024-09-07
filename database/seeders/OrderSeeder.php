@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Order;
-use App\Models\User;
 use App\Models\Worker;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +15,6 @@ class OrderSeeder extends Seeder
     {
         $orders = Order::factory(5)->create();
         $workers = Worker::query()->newQuery()->limit(5)->get();
-
 
         foreach ($orders as $order) {
             /** @var Order $order */
