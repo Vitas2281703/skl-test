@@ -52,3 +52,15 @@ composer analyse
 ```
 php artisan ide-helper:models --write-mixin
 ```
+
+## Роуты для проверки
+
+ - GET    /api/workers                       - Список исполнителей с фильтром
+ - POST   /api/order                         - Создать заказ
+ - PATCH  /api/order/{order_id}/sync-workers - Прикрепить исполнителей к заказу
+ - PATCH  /api/order/{order_id}/status       - Изменить статус заказа
+ - GET    /api/auth/me                       - Получить авторизованного пользователя
+ - GET    /api/auth/sessions                 - Список сессий пользователя
+ - DELETE /api/auth/sessions/{session_id}    - Удалить сессию
+ - POST   /api/auth/login                    - Войти в аккаунт
+ - POST   /api/auth/logout                   - Выйти из аккаунта
