@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('type_id')->references('id')->on('order_types');
             $table->foreignId('partnership_id')->constrained();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->string('description', 500);
             $table->string('address');
             $table->unsignedInteger('amount');
-            $table->foreignId('status_id')->references('id')->on('order_status');
+            $table->foreignId('status_id')->references('id')->on('order_statuses');
             $table->timestamps();
         });
     }

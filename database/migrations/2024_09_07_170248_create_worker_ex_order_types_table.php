@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('worker_ex_order_types', function (Blueprint $table) {
-            $table->foreignId('worker_id');
-            $table->foreignId('order_type_id');
+            $table->foreignId('worker_id')->constrained();
+            $table->foreignId('order_type_id')->constrained();
             $table->timestamps();
         });
     }
