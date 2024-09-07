@@ -7,7 +7,9 @@ use App\Domains\DTO\User\UserWithTokenData;
 use App\Exceptions\User\IncorrectPasswordException;
 use App\Models\User;
 use App\Repositories\UserEloquentRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\Token;
 
 readonly class AuthService
 {
@@ -30,5 +32,10 @@ readonly class AuthService
             'user' => $user,
             'token' => $user->createToken(config('app.name'))->accessToken,
         ]);
+    }
+
+    public function logout(): void
+    {
+        Auth::user()->tokens()->update(['revoked' => true]);
     }
 }

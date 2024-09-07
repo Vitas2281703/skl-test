@@ -19,7 +19,7 @@ class UserWithTokenResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'user' => $this->user,
+            'user' => UserResource::make($this->user),
             'token' => $this->token,
         ];
     }
