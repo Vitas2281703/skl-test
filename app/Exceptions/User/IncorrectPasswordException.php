@@ -3,7 +3,6 @@
 namespace App\Exceptions\User;
 
 use App\Exceptions\ApplicationException;
-use Exception;
 
 class IncorrectPasswordException extends ApplicationException
 {
