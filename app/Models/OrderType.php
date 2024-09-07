@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @mixin IdeHelperSession
+ * @mixin IdeHelperOrderType
  */
 class OrderType extends Model
 {
