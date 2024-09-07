@@ -7,13 +7,11 @@ use App\Domains\DTO\User\UserWithTokenData;
 use App\Exceptions\User\CannotDeleteSomeoneSessionException;
 use App\Exceptions\User\IncorrectPasswordException;
 use App\Models\Session;
-use App\Models\User;
 use App\Repositories\SessionEloquentRepository;
 use App\Repositories\UserEloquentRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Passport\Token;
 
 readonly class AuthService
 {
@@ -58,7 +56,7 @@ readonly class AuthService
         $session = $this->sessionRepository->find($session_id);
 
         if ($session->user_id != $user_id) {
-            throw new CannotDeleteSomeoneSessionException();
+            throw new CannotDeleteSomeoneSessionException;
         }
 
         $session->delete();

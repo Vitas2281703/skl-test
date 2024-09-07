@@ -9,7 +9,6 @@ use Laravel\Passport\Http\Controllers\PersonalAccessTokenController;
 use Laravel\Passport\Http\Controllers\ScopeController;
 use Laravel\Passport\Http\Controllers\TransientTokenController;
 
-
 Route::post('auth/login', [AuthController::class, 'login'])->name('auth.login');
 
 // Переопределение роутов паспорта
@@ -42,7 +41,7 @@ Route::middleware('auth:api')->group(function () {
     Route::group(['prefix' => '/auth', 'as' => 'auth.'], function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/me', [AuthController::class, 'me'])->name('me');
-        Route::group(['prefix' => '/sessions', 'as' => 'sessions.'], function (){
+        Route::group(['prefix' => '/sessions', 'as' => 'sessions.'], function () {
             Route::get('/', [AuthController::class, 'sessions'])->name('list');
             Route::delete('/{session_id}', [AuthController::class, 'closeSession'])->name('delete');
         });

@@ -15,7 +15,7 @@ class UserEloquentRepository extends BaseRepository
 
     public function session(): Session
     {
-        return new Session();
+        return new Session;
     }
 
     public function getByEmail(string $email): User
