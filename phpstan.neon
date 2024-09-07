@@ -1,0 +1,29 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+        - database/migrations
+        - database/seeders
+        - routes/
+
+    disableSchemaScan: true
+
+    level: 6
+
+    ignoreErrors:
+            - '#PHPDoc tag @mixin contains unknown class [a-zA-Z0-9\\_]+IdeHelper#'
+            - identifier: missingType.generics
+
+    checkMissingCallableSignature: true
+    checkOctaneCompatibility: true
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    reportMaybesInMethodSignatures: true
+    reportStaticMethodSignatures: true
+
+    exceptions:
+        check:
+            tooWideThrowType: true

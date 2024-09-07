@@ -31,4 +31,24 @@ composer install
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
+php artisan passport:install
+php artisan passport:set-passport-client-secret
+```
+
+## Pint
+
+```
+composer pint
+```
+
+## Phpstan
+
+```
+composer analyse
+```
+
+## Генерация докблоков для моделей
+
+```
+php artisan ide-helper:models --write-mixin
 ```
