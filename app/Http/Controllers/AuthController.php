@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Domains\DTO\User\LoginData;
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\User\SessionResource;
 use App\Http\Resources\User\UserResource;
 use App\Http\Resources\User\UserWithTokenResource;
 use App\Services\AuthService;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController
 {
@@ -35,5 +38,15 @@ class AuthController
     public function me(): UserResource
     {
         return UserResource::make(Auth::user());
+    }
+
+    public function sessions(): AnonymousResourceCollection
+    {
+        return SessionResource::collection(
+            $this->service->getSessions(
+                Auth::id(),
+                request()->input('per_page') ?? 10
+            )
+        );
     }
 }

@@ -7,6 +7,8 @@ use App\Domains\DTO\User\UserWithTokenData;
 use App\Exceptions\User\IncorrectPasswordException;
 use App\Models\User;
 use App\Repositories\UserEloquentRepository;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\Token;
@@ -37,5 +39,10 @@ readonly class AuthService
     public function logout(): void
     {
         Auth::user()->tokens()->update(['revoked' => true]);
+    }
+
+    public function getSessions(int $user_id, int $per_page = 10): LengthAwarePaginator
+    {
+        return $this->repository->getSessions($user_id, $per_page);
     }
 }
